@@ -1,10 +1,16 @@
+<style lang="stylus">
+.options .option.selected
+    background-color: yellow;
+</style>
+
 <template lang="jade">
-h2 {{title}}
+p
+    strong {{title}}
 ul.options
     li.option(
-        class="{{$index === selected && 'selected'}}"
+        v-class="selected : $index === selected"
         v-repeat="options"
-        v-on="on : select($index)"
+        v-on="click : select($index)"
     ) {{desc}}
 </template>
 
