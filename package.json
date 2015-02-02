@@ -20,7 +20,7 @@
     "coffee-script": "^1.9.0",
     "insert-css": "^0.2.0",
     "jade": "^1.9.1",
-    "node-sass": "^2.0.0-beta",
+    "stylus": "^0.49.3",
     "vueify": "^1.1.0",
     "watchify": "^2.3.0"
   },
