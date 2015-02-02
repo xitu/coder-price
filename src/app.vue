@@ -1,29 +1,30 @@
 <style lang="stylus">
 </style>
 
-
 <template lang="jade">
-header(v-with="title")
-questions
-footer(v-with="price")
+header
+    p 招一个好程序猿要多少钱？
+div.container
+    section.questions
+        article.question(v-repeat="questions" v-component="question")
+footer
+    p ￥{{totalPrice}}
 </template>
 
 
 <script lang="coffee">
 module.exports =
     data:
-        title: 'TITLE'
-        totalPrice: 0
+        title: 'asdsadas'
         questions: require './questions.json'
     components:
-        header    : require './components/header.vue'
-        questions : require './components/questions.vue'
-        footer    : require './components/footer.vue'
-    methods:
-        setTitle: (title) ->
-            @title = title
-        addPrice: (price) ->
-            @totalPrice += price
-        subscribePrice: (price) ->
-            @totalPrice -= price
+        questions : require './components/question.vue'
+    computed:
+        totalPrice: () ->
+            price = 0
+            for question in @questions
+                if selected
+                    price += question[selected].price
+            price
+
 </script>

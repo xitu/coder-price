@@ -1,0 +1,124 @@
+[
+    {
+        "title": "TA 认为一次真诚的握手需要几次？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "1 次",
+                "price": -1000
+            },
+            {
+                "desc": "3 次",
+                "price": 2000
+            },
+            {
+                "desc": "1024 次",
+                "price": 100
+            }
+        ]
+    },
+    {
+        "title": "TA 心中的 C 语言之父是谁？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "谭浩强",
+                "price": 500
+            },
+            {
+                "desc": "丹尼斯·里奇",
+                "price": 300
+            },
+            {
+                "desc": "荣兰祥",
+                "price": -1000
+            }
+        ]
+    },
+    {
+        "title": "TA 认为 Github, StackOverflow 是怎样一个网站？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "不知道",
+                "price": -500
+            },
+            {
+                "desc": "┋◆冃.狌.交.伖，棑.解.漃.瘼◆ █",
+                "price": 3500
+            },
+            {
+                "desc": "404",
+                "price": -200
+            }
+        ]
+    },
+    {
+        "title": "TA 是否知道 “手持两把锟斤拷” 的下联？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "二话不说对出 “万水千山总是红”",
+                "price": 5
+            },
+            {
+                "desc": "完全不明白在说啥",
+                "price": -800
+            },
+            {
+                "desc": "淡定回复 “口中疾呼烫烫烫”",
+                "price": 2500
+            }
+        ]
+    },
+    {
+        "title": "TA 学编程时爱看的书籍封面是？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "各种各样的动物",
+                "price": 2000
+            },
+            {
+                "desc": "21 天精通 XXX",
+                "price": -1000
+            },
+            {
+                "desc": "現役女子大生（秘）リアルセックス 03",
+                "price": 1000
+            }
+        ]
+    },
+    {
+        "title": "TA 觉得 JavaScript 和相面哪一个语言血缘关系最近？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "Java",
+                "price": -1000
+            },
+            {
+                "desc": "ActionScript",
+                "price": 1000
+            },
+            {
+                "desc": "ECMASript",
+                "price": 2500
+            }
+        ]
+    },
+    {
+        "title": "TA 周末是否愿意加班？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "好呀",
+                "price": 0
+            },
+            {
+                "desc": "不",
+                "price": -5000
+            }
+        ]
+    }
+]
