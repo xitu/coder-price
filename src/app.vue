@@ -32,8 +32,6 @@ footer
     bottom: 60px;
     left: 0;
 .questions .question
-    position: absolute;
-    top: 0;
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
