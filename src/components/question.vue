@@ -1,11 +1,19 @@
 <style lang="stylus">
-.options .option.selected
-    background-color: yellow;
+.title
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+.options
+    padding-left: 0;
+    list-style: none;
+.option
+    padding: 10px;
+.option.selected
+    background-color: red;
+    color: #fff;
 </style>
 
 <template lang="jade">
-p
-    strong {{title}}
+.title {{index + 1}}：{{title}}
 ul.options
     li.option(
         v-class="selected : $index === selected"
@@ -18,5 +26,6 @@ ul.options
 module.exports =
     methods:
         select: (index) ->
-            @selected = index if index >= 0 and index < @options.length
+            @selected = index if @selected is null
+
 </script>

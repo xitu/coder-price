@@ -25,6 +25,7 @@
     "watchify": "^2.3.0"
   },
   "dependencies": {
+    "icono": "git://github.com/saeedalipoor/icono",
     "vue": "^0.11.4"
   }
 }
