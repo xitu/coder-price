@@ -7791,24 +7791,6 @@ module.exports.template = __vue_template__;
 },{"insert-css":"/Users/kalasoo/Projects/coder-price/node_modules/insert-css/index.js"}],"/Users/kalasoo/Projects/coder-price/src/questions.json":[function(require,module,exports){
 module.exports=[
     {
-        "title": "TA 认为一次真诚的握手需要几次？",
-        "selected": null,
-        "options": [
-            {
-                "desc": "1 次",
-                "price": -1000
-            },
-            {
-                "desc": "3 次",
-                "price": 2000
-            },
-            {
-                "desc": "1024 次",
-                "price": 100
-            }
-        ]
-    },
-    {
         "title": "TA 心中的 C 语言之父是谁？",
         "selected": null,
         "options": [
@@ -7823,6 +7805,24 @@ module.exports=[
             {
                 "desc": "丹尼斯·里奇",
                 "price": 3000
+            }
+        ]
+    },
+    {
+        "title": "TA 认为一次真诚的握手需要几次？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "1 次",
+                "price": -1000
+            },
+            {
+                "desc": "3 次",
+                "price": 2000
+            },
+            {
+                "desc": "1024 次",
+                "price": 100
             }
         ]
     },
