@@ -7893,7 +7893,7 @@ module.exports=[
                 "price": 1000
             },
             {
-                "desc": "ECMASript",
+                "desc": "ECMAScript",
                 "price": 2500
             }
         ]
@@ -7931,4 +7931,5 @@ module.exports=[
         ]
     }
 ]
+
 },{}]},{},["/Users/kalasoo/Projects/coder-price/src/app.js"]);
