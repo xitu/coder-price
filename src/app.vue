@@ -109,7 +109,7 @@ section.share.text-center(v-if="!currentQuestion()")
             | 可以找到比这更棒的程序猿哦！
 
 footer(v-if="currentQuestion()")
-    p ￥{{totalPrice}}
+    p ￥{{showPrice}}
 </template>
 
 
@@ -119,6 +119,7 @@ module.exports =
         currentQuestionIndex: 0
         questions: require './questions.json'
         totalPrice: 0
+        showPrice: 0
     components:
         question : require './components/question.vue'
     methods:
@@ -133,9 +134,22 @@ module.exports =
                     if selected isnt null
                         price += options[selected].price
                 price
+            showPrice = (from, to) =>
+                count = 100
+                time = 500
+                interval = (to - from) / count
+                i = 0
+                counter = setInterval () =>
+                    i += 1
+                    @showPrice = from + i * interval
+                    if i is count
+                        clearInterval counter
+                , (time / count)
             if @enableNextQuestion()
                 @currentQuestionIndex += 1
-                @totalPrice = countPrice()
+                toPrice = countPrice()
+                showPrice(@totalPrice, toPrice)
+                @totalPrice = toPrice
         enableNextQuestion: () ->
             @questions[@currentQuestionIndex].selected isnt null
         weiboShareUrl: () ->
