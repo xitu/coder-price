@@ -15,7 +15,7 @@
 <template lang="jade">
 .title {{index + 1}}：{{title}}
 ul.options
-    li.option(
+    li.option.pointer(
         v-class="selected : $index === selected"
         v-repeat="options"
         v-on="click : select($index)"

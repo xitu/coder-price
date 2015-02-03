@@ -108,6 +108,24 @@
         ]
     },
     {
+        "title": "TA 认为 FIR 是什么？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "一个台湾知名乐队",
+                "price": -500
+            },
+            {
+                "desc": "一个热门应用商店",
+                "price": 500
+            },
+            {
+                "desc": "一个测试发布工具",
+                "price": 2500
+            }
+        ]
+    },
+    {
         "title": "TA 周末是否愿意加班？",
         "selected": null,
         "options": [

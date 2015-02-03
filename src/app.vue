@@ -13,8 +13,16 @@ body, html
     position: relative;
 body
     font-family: "Hiragino Sans GB", Helvetica, Arial, sans-serif;
+    background: #eaeaea;
+#app
+    max-width: 320px;
+    height: 480px;
+    margin: 0 auto;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 2px 5px #ddd;
 header, footer
-    position: fixed;
+    position: absolute;
     z-index: 10;
     background: red;
     color: #fff;
@@ -71,6 +79,8 @@ button [class*=icono-]
 // UTILS
 .text-center
     text-align: center;
+.pointer
+    cursor: pointer;
 </style>
 
 <template lang="jade">
@@ -87,9 +97,9 @@ section.questions(v-if="currentQuestion()" v-transition="fade")
 section.share.text-center(v-if="!currentQuestion()")
     button
         i.icono-share
-    p 这个程序员需要 ￥{{totalPrice()}} 才能招的起！
+    p 这个程序员需要 ￥{{totalPrice}} 才能招的起！
     p
-        span(v-if="inWechat") 点击右上角分享到微信
+        span(v-if="inWechat" style="color: red;") 点击右上角分享到微信
         - var desc="招一个好程序猿要 @稀土圈"
         span(v-if="!inWechat")
             a(v-attr="href: weiboShareUrl()", target='_blank') 分享到微博
@@ -99,7 +109,7 @@ section.share.text-center(v-if="!currentQuestion()")
             | 可以找到比这更棒的程序猿哦！
 
 footer(v-if="currentQuestion()")
-    p ￥{{totalPrice()}}
+    p ￥{{showPrice}}
 </template>
 
 
@@ -108,32 +118,46 @@ module.exports =
     data:
         currentQuestionIndex: 0
         questions: require './questions.json'
+        totalPrice: 0
+        showPrice: 0
     components:
         question : require './components/question.vue'
     methods:
-        totalPrice: () ->
-            price = 0
-            for question in @questions
-                selected = question.selected
-                options  = question.options
-                if selected isnt null
-                    price += options[selected].price
-            price
         currentQuestion: (index) ->
             @currentQuestionIndex < @questions.length and @questions[@currentQuestionIndex]
         nextQuestion: () ->
+            countPrice = () =>
+                price = 0
+                for question in @questions
+                    selected = question.selected
+                    options  = question.options
+                    if selected isnt null
+                        price += options[selected].price
+                price
+            showPrice = (from, to) =>
+                count = 100
+                time = 500
+                interval = (to - from) / count
+                i = 0
+                counter = setInterval () =>
+                    i += 1
+                    @showPrice = from + i * interval
+                    if i is count
+                        clearInterval counter
+                , (time / count)
             if @enableNextQuestion()
                 @currentQuestionIndex += 1
+                toPrice = countPrice()
+                showPrice(@totalPrice, toPrice)
+                @totalPrice = toPrice
         enableNextQuestion: () ->
             @questions[@currentQuestionIndex].selected isnt null
         weiboShareUrl: () ->
             appUrl = 'http://coder-price.xitu.io'
-            desc = "#{appUrl}：我招一个好程序猿要￥#{@totalPrice()}，看看你需要多少钱的程序猿？@稀土圈"
+            desc = "#{appUrl}：我招一个好程序猿要￥#{@totalPrice}，看看你需要多少钱的程序猿？@稀土圈"
             url = 'https://xitu.io'
             "http://service.weibo.com/share/share.php?title=#{encodeURIComponent(desc)}&url=#{encodeURIComponent(url)}"
     computed:
         inWechat: () ->
             window.navigator.userAgent.toLowerCase().indexOf('micromessenger') isnt -1
-
-
 </script>
