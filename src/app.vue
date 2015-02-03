@@ -146,7 +146,7 @@ module.exports =
         enableNextQuestion: () ->
             @questions[@currentQuestionIndex].selected isnt null
         weiboShareUrl: () ->
-            appUrl = 'http://coder-price.xitu.io'
+            appUrl = 'http://xitu.github.io/coder-price/'
             desc = "#{appUrl}：我招一个好程序猿要￥#{@totalPrice}，看看你需要多少钱的程序猿？@稀土圈"
             url = 'https://xitu.io'
             "http://service.weibo.com/share/share.php?title=#{encodeURIComponent(desc)}&url=#{encodeURIComponent(url)}"
