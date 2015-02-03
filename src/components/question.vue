@@ -26,6 +26,6 @@ ul.options
 module.exports =
     methods:
         select: (index) ->
-            @selected = index if @selected is null
+            @selected = index
 
 </script>

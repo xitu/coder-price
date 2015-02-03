@@ -13,14 +13,6 @@ body, html
     position: relative;
 body
     font-family: "Hiragino Sans GB", Helvetica, Arial, sans-serif;
-    background: #eaeaea;
-#app
-    max-width: 320px;
-    height: 480px;
-    margin: 0 auto;
-    position: relative;
-    background: #fff;
-    box-shadow: 0 2px 5px #ddd;
 header, footer
     position: absolute;
     z-index: 10;
