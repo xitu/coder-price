@@ -136,4 +136,4 @@ button [class*=icono-]
     text-align: center;
 .pointer
     cursor: pointer;
-</style>
+</style
