@@ -7695,37 +7695,61 @@ var Vue = require('vue');
 var appOptions = require('./app.vue');
 var app = new Vue(appOptions).$mount('#app');
 },{"./app.vue":"/Users/kalasoo/Projects/coder-price/src/app.vue","vue":"/Users/kalasoo/Projects/coder-price/node_modules/vue/src/vue.js"}],"/Users/kalasoo/Projects/coder-price/src/app.vue":[function(require,module,exports){
-require("insert-css")("*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;outline:0}body,html{margin:0;border:0;padding:0;height:100%;max-height:100%;position:relative}body{font-family:\"Hiragino Sans GB\",Helvetica,Arial,sans-serif}footer,header{position:fixed;z-index:10;background:red;color:#fff;left:0;right:0;text-align:center}header{top:0}footer{bottom:0}.questions,.share{position:absolute;top:60px;right:0;bottom:60px;left:0}.questions .question{width:100%;max-width:400px;margin:0 auto;padding:20px;height:100%}.questions .action{position:absolute;bottom:10px;left:0;right:0}.questions .action.active{cursor:pointer}.questions .action [class*=icono-]{transition:all .3s}.questions .action.active [class*=icono-]{color:red}.share{padding-top:30px}.share .promo{position:absolute;bottom:10px;left:0;right:0}button{-webkit-appearance:none;appearance:none;padding:10px;border:2px solid red;border-radius:50%;background:0 0;color:red}button [class*=icono-]{color:red}.share button{margin:20px}.text-center{text-align:center}");
-var __vue_template__ = "<header><p>招一个好程序猿要多少钱？</p></header><section v-if=\"currentQuestion()\" v-transition=\"fade\" class=\"questions\"><article v-component=\"question\" v-with=\"currentQuestion(), index: currentQuestionIndex\" class=\"question\"></article><div v-class=\"active: enableNextQuestion()\" v-on=\"click: nextQuestion()\" class=\"action text-center\"><i class=\"icono-checkCircle\"></i></div></section><section v-if=\"!currentQuestion()\" class=\"share text-center\"><button><i class=\"icono-share\"></i></button><p>这个程序员需要 ￥{{totalPrice()}} 才能招的起！</p><p><span v-if=\"inWechat\">点击右上角分享到微信</span><span v-if=\"!inWechat\"><a v-attr=\"href: weiboShareUrl()\" target=\"_blank\">分享到微博</a></span></p><p class=\"promo\"><small>在<a href=\"https://xitu.io/\">稀土</a>可以找到比这更棒的程序猿哦！</small></p></section><footer v-if=\"currentQuestion()\"><p>￥{{totalPrice()}}</p></footer>";
+require("insert-css")("*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;outline:0}body,html{margin:0;border:0;padding:0;height:100%;max-height:100%;position:relative}body{font-family:\"Hiragino Sans GB\",Helvetica,Arial,sans-serif;background:#eaeaea}#app{max-width:320px;height:480px;margin:0 auto;position:relative;background:#fff;box-shadow:0 2px 5px #ddd}footer,header{position:absolute;z-index:10;background:red;color:#fff;left:0;right:0;text-align:center}header{top:0}footer{bottom:0}.questions,.share{position:absolute;top:60px;right:0;bottom:60px;left:0}.questions .question{width:100%;max-width:400px;margin:0 auto;padding:20px;height:100%}.questions .action{position:absolute;bottom:10px;left:0;right:0}.questions .action.active{cursor:pointer}.questions .action [class*=icono-]{transition:all .3s}.questions .action.active [class*=icono-]{color:red}.share{padding-top:30px}.share .promo{position:absolute;bottom:10px;left:0;right:0}button{-webkit-appearance:none;appearance:none;padding:10px;border:2px solid red;border-radius:50%;background:0 0;color:red}button [class*=icono-]{color:red}.share button{margin:20px}.text-center{text-align:center}.pointer{cursor:pointer}");
+var __vue_template__ = "<header><p>招一个好程序猿要多少钱？</p></header><section v-if=\"currentQuestion()\" v-transition=\"fade\" class=\"questions\"><article v-component=\"question\" v-with=\"currentQuestion(), index: currentQuestionIndex\" class=\"question\"></article><div v-class=\"active: enableNextQuestion()\" v-on=\"click: nextQuestion()\" class=\"action text-center\"><i class=\"icono-checkCircle\"></i></div></section><section v-if=\"!currentQuestion()\" class=\"share text-center\"><button><i class=\"icono-share\"></i></button><p>这个程序员需要 ￥{{totalPrice}} 才能招的起！</p><p><span v-if=\"inWechat\" style=\"color: red\">点击右上角分享到微信</span><span v-if=\"!inWechat\"><a v-attr=\"href: weiboShareUrl()\" target=\"_blank\">分享到微博</a></span></p><p class=\"promo\"><small>在<a href=\"https://xitu.io/\">稀土</a>可以找到比这更棒的程序猿哦！</small></p></section><footer v-if=\"currentQuestion()\"><p>￥{{showPrice}}</p></footer>";
 module.exports = {
   data: {
     currentQuestionIndex: 0,
-    questions: require('./questions.json')
+    questions: require('./questions.json'),
+    totalPrice: 0,
+    showPrice: 0
   },
   components: {
     question: require('./components/question.vue')
   },
   methods: {
-    totalPrice: function() {
-      var options, price, question, selected, _i, _len, _ref;
-      price = 0;
-      _ref = this.questions;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        question = _ref[_i];
-        selected = question.selected;
-        options = question.options;
-        if (selected !== null) {
-          price += options[selected].price;
-        }
-      }
-      return price;
-    },
     currentQuestion: function(index) {
       return this.currentQuestionIndex < this.questions.length && this.questions[this.currentQuestionIndex];
     },
     nextQuestion: function() {
+      var countPrice, showPrice, toPrice;
+      countPrice = (function(_this) {
+        return function() {
+          var options, price, question, selected, _i, _len, _ref;
+          price = 0;
+          _ref = _this.questions;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            question = _ref[_i];
+            selected = question.selected;
+            options = question.options;
+            if (selected !== null) {
+              price += options[selected].price;
+            }
+          }
+          return price;
+        };
+      })(this);
+      showPrice = (function(_this) {
+        return function(from, to) {
+          var count, counter, i, interval, time;
+          count = 100;
+          time = 500;
+          interval = (to - from) / count;
+          i = 0;
+          return counter = setInterval(function() {
+            i += 1;
+            _this.showPrice = from + i * interval;
+            if (i === count) {
+              return clearInterval(counter);
+            }
+          }, time / count);
+        };
+      })(this);
       if (this.enableNextQuestion()) {
-        return this.currentQuestionIndex += 1;
+        this.currentQuestionIndex += 1;
+        toPrice = countPrice();
+        showPrice(this.totalPrice, toPrice);
+        return this.totalPrice = toPrice;
       }
     },
     enableNextQuestion: function() {
@@ -7734,7 +7758,7 @@ module.exports = {
     weiboShareUrl: function() {
       var appUrl, desc, url;
       appUrl = 'http://coder-price.xitu.io';
-      desc = appUrl + "：我招一个好程序猿要￥" + (this.totalPrice()) + "，看看你需要多少钱的程序猿？@稀土圈";
+      desc = appUrl + "：我招一个好程序猿要￥" + this.totalPrice + "，看看你需要多少钱的程序猿？@稀土圈";
       url = 'https://xitu.io';
       return "http://service.weibo.com/share/share.php?title=" + (encodeURIComponent(desc)) + "&url=" + (encodeURIComponent(url));
     }
@@ -7750,7 +7774,7 @@ module.exports.template = __vue_template__;
 
 },{"./components/question.vue":"/Users/kalasoo/Projects/coder-price/src/components/question.vue","./questions.json":"/Users/kalasoo/Projects/coder-price/src/questions.json","insert-css":"/Users/kalasoo/Projects/coder-price/node_modules/insert-css/index.js"}],"/Users/kalasoo/Projects/coder-price/src/components/question.vue":[function(require,module,exports){
 require("insert-css")(".title{padding-bottom:10px;border-bottom:2px solid #ddd}.options{padding-left:0;list-style:none}.option{padding:10px}.option.selected{background-color:red;color:#fff}");
-var __vue_template__ = "<div class=\"title\">{{index + 1}}：{{title}}</div><ul class=\"options\"><li v-class=\"selected : $index === selected\" v-repeat=\"options\" v-on=\"click : select($index)\" class=\"option\">{{desc}}</li></ul>";
+var __vue_template__ = "<div class=\"title\">{{index + 1}}：{{title}}</div><ul class=\"options\"><li v-class=\"selected : $index === selected\" v-repeat=\"options\" v-on=\"click : select($index)\" class=\"option pointer\">{{desc}}</li></ul>";
 module.exports = {
   methods: {
     select: function(index) {
@@ -7764,7 +7788,7 @@ module.exports = {
 module.exports.template = __vue_template__;
 
 },{"insert-css":"/Users/kalasoo/Projects/coder-price/node_modules/insert-css/index.js"}],"/Users/kalasoo/Projects/coder-price/src/questions.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=[
+module.exports=[
     {
         "title": "TA 认为一次真诚的握手需要几次？",
         "selected": null,
@@ -7869,6 +7893,24 @@ module.exports=module.exports=module.exports=module.exports=module.exports=[
             },
             {
                 "desc": "ECMASript",
+                "price": 2500
+            }
+        ]
+    },
+    {
+        "title": "TA 认为 FIR 是什么？",
+        "selected": null,
+        "options": [
+            {
+                "desc": "一个台湾知名乐队",
+                "price": -500
+            },
+            {
+                "desc": "一个热门应用商店",
+                "price": 500
+            },
+            {
+                "desc": "一个测试发布工具",
                 "price": 2500
             }
         ]
