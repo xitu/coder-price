@@ -1,5 +1,3 @@
-<style lang="stylus" src="app.styl"></style>
-
 <template lang="jade">
 header
     p 招一个好程序猿要多少钱？
@@ -61,6 +59,81 @@ module.exports =
     computed:
         inWechat: () ->
             window.navigator.userAgent.toLowerCase().indexOf('micromessenger') isnt -1
-
-
 </script>
+
+<style lang="stylus" src="app.styl">
+*, *:before, *:after
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+body, html
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 100%;
+    max-height: 100%;
+    position: relative;
+body
+    font-family: "Hiragino Sans GB", Helvetica, Arial, sans-serif;
+header, footer
+    position: fixed;
+    z-index: 10;
+    background: red;
+    color: #fff;
+    left: 0;
+    right: 0;
+    text-align: center;
+header
+    top: 0;
+footer
+    bottom: 0;
+.share, .questions
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 60px;
+    left: 0;
+.questions .question
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100%;
+.questions .action
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+.questions .action.active
+    cursor: pointer;
+.questions .action [class*=icono-]
+    transition: all 0.3s;
+.questions .action.active [class*=icono-]
+    color: red;
+.share
+    padding-top: 30px;
+.share .promo
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+button
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 50%;
+    background: none;
+    color: red;
+button [class*=icono-]
+    color: red;
+.share button
+    margin: 20px;
+
+// UTILS
+.text-center
+    text-align: center;
+.pointer
+    cursor: pointer;
+</style>
