@@ -77,7 +77,7 @@ button [class*=icono-]
 
 <template lang="jade">
 header
-    p 招一个好程序猿要多少钱？
+    p 测测你的身价是多少？
 section.questions(v-if="currentQuestion()" v-transition="fade")
     article.question(
         v-component="question"
