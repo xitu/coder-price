@@ -95,9 +95,9 @@ section.share.text-center(v-if="!currentQuestion()")
         span(v-if="!inWechat")
             a(v-attr="href: weiboShareUrl()", target='_blank') 分享到微博
     p.promo
-        small 在
-            a(href='https://xitu.io/') 稀土
-            | 可以找到比这更棒的程序猿哦！
+        下载
+        a(href='https://gold.xitu.io/app') 掘金
+        | 应用，挖掘更多的技术干货
 
 footer
     p ￥{{showPrice}}
@@ -142,12 +142,12 @@ module.exports =
                 showPrice(@totalPrice, toPrice)
                 @totalPrice = toPrice
                 if @currentQuestionIndex is @questions.length
-                    document.title = "我招一个好程序猿要￥#{@totalPrice}，看看你需要多少钱的程序猿？"
+                    document.title = "作为一个程序猿我的身价是￥#{@totalPrice}，来测测你的身价是多少！"
         enableNextQuestion: () ->
             @questions[@currentQuestionIndex].selected isnt null
         weiboShareUrl: () ->
             appUrl = 'http://xitu.github.io/coder-price/'
-            desc = "#{appUrl}：我招一个好程序猿要￥#{@totalPrice}，看看你需要多少钱的程序猿？@稀土圈"
+            desc = "#{appUrl}：作为一个程序猿我的身价是￥#{@totalPrice}，来测测你的身价是多少！@稀土圈"
             url = 'https://xitu.io'
             "http://service.weibo.com/share/share.php?title=#{encodeURIComponent(desc)}&url=#{encodeURIComponent(url)}"
     computed:
